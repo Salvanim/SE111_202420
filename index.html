@@ -15,12 +15,11 @@
     <h2>A place fo all of my project links</h2>
     <div id = "search">
         <p>Select File</p>
-        
+        <list>
+            <ul>Set Up</ul>
+        </list>
     </div>
 </body>
-<script src="dir.php">
-
-</script>
 <script>
 
     function currentLocation(){
@@ -28,7 +27,7 @@
     }
 
     function getSource(){
-        var locationArray = currentLocation().toString().split("/")
+        var locationArray = document.location.pathname.toString().toString().split("/")
         locationArray.pop()
         locationArray = locationArray.join("/")
         return locationArray
@@ -55,6 +54,31 @@
 
         return currentPath
     }
+
+    async function getRepositoryPaths(username, repo) {
+        try {
+            // Fetch the contents of the repository using the GitHub API
+            const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents`;
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+
+            // Extract the paths from the response
+            const paths = data.map(item => item.path);
+
+            return paths;
+        } catch (error) {
+            console.error('Error fetching repository paths:', error);
+            return [];
+        }
+    }
+    
+    async function fetchGit(link){
+
+    }
+
+getRepositoryPaths("Salvanim", "SE111_202420")
+  .then(paths => console.log('Repository Paths:', paths));
+
 
 </script>
 </html>

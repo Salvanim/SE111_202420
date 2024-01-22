@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="K Truchon">
+    <meta name="description" content="W3 Demo | Mainframes">
+
+    <title>W3 Bio | Index</title>
+
+    <style>
+        /*write CSS in here*/
+
+        /*select elements by TYPE - applies to all tags of that type*/
+        div {
+            border:1px solid black;
+            padding:10px;
+            margin:5px;
+        }
+
+        /*select elements by #ID - applies ONLY to element with that ID*/
+        #wrapper {
+            background-color:grey;
+            width:900px;
+            margin:auto; /*centers element in page; auto equal left + right space*/
+        }
+
+        /*select elements by .CLASS - applies only to elements with that CLASS*/
+        .border {
+            border:2px solid maroon;
+        }
+
+        #nav {
+            border:2px solid black;
+        }
+
+
+    </style>
+
+</head>
+<body style="background-color:rgb(192, 191, 191)">
+
+    <div id="wrapper">
+
+        <div id="header" class="border">
+
+            <h1 id="title" class="fancy">The Last of Us</h1>
+
+        </div><!--/ #header-->
+
+        <div id="nav" class="border">
+
+            <a href="index.html">| HOME |</a>
+            <a href="about.html">| ABOUT |</a>
+            <a href="people.html">| PEOPLE |</a>
+            <a href="places.html">| PLACES |</a>
+    
+            <br>
+
+            <a href="https://www.hbo.com/the-last-of-us">| Official HBO Site |</a>
+            <a href="#footer">| Bottom of Page |</a>
+
+        </div><!--/ #nav-->
+
+        <div id="main-content" class="border">
+
+            <h2>Content for <b>PLACES</b> page</h2>
+
+        </div><!--/ #main-content-->
+ 
+        <div id="footer" class="border">
+
+            <p>&copy; K Truchon | SE111.02 </p>
+            <br>
+            <a href="index.html#header">| Top of HOME Page |</a>
+
+        </div><!--/ #footer-->
+
+    </div><!--/ #wrapper-->
+    
+</body>
+</html>
