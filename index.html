@@ -4,22 +4,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="author" content="Dylan Fisher">
+    <meta name="description" content="Repo Index">
+
     <title>Document</title>
 </head>
 <body>
+    <h1>Welcome to Dylan's Repo Index</h1>
+    <h2>A place fo all of my project links</h2>
     <div id = "search">
         <p>Select File</p>
+        
     </div>
 </body>
+<script src="dir.php">
+
+</script>
 <script>
-    function getRootWebSitePath(){
-        var _location = document.location.toString();
-        var applicationNameIndex = _location.indexOf('/', _location.indexOf('://') + 3);
-        var applicationName = _location.substring(0, applicationNameIndex) + '/';
-        var webFolderIndex = _location.indexOf('/', _location.indexOf(applicationName) + applicationName.length);
-        var webFolderFullPath = _location.substring(0, webFolderIndex);
-        return webFolderFullPath;
+
+    function currentLocation(){
+        return document.location.pathname.toString()
     }
-    console.log(getRootWebSitePath())
+
+    function getSource(){
+        var locationArray = currentLocation().toString().split("/")
+        locationArray.pop()
+        locationArray = locationArray.join("/")
+        return locationArray
+    }
+
+    function getSource(path){
+        var locationArray = path.split("/")
+        locationArray.pop()
+        locationArray = locationArray.join("/")
+        return locationArray
+    }
+
+    function travelBackPath(path, amount){
+        currentPath = path
+        max = path.split("/").length
+
+        if (amount > max){
+            amount = amount % max
+        }
+
+        for (var i = 0; i < amount; i++){
+            currentPath = getSource(currentPath)
+        }
+
+        return currentPath
+    }
+
 </script>
 </html>
