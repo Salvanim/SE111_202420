@@ -54,11 +54,10 @@
 
         return currentPath
     }
-
-    async function getRepositoryPaths(username, repo) {
+    
+    async function getData(username, repo, path){
         try {
-            // Fetch the contents of the repository using the GitHub API
-            const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents`;
+            const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
             const response = await fetch(apiUrl);
             const data = await response.json();
             return data;
@@ -76,9 +75,9 @@
         var i = 0
         for(type in types){
             if(type = "dir"){
-                dir.push({i: data[i]})
+                dir.push(data[i])
             } else {
-                file.push({i: data[i]})
+                file.push(data[i])
             }
             i += 1
         }
@@ -88,7 +87,7 @@
 
 
 
-console.log(getRepositoryPaths("Salvanim", "SE111_202420"))
+console.log(getData("Salvanim", "SE111_202420", "W2D2/images"))
 
 </script>
 </html>
