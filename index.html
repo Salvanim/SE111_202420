@@ -33,7 +33,7 @@
     function getData(username, repo, path){
         const urlString = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
         const request = new XMLHttpRequest();
-        request.open("GET", urlString, false); // `false` makes the request synchronous
+        request.open("GET", urlString, false);
         request.send(null);
 
         if (request.status === 200) {
@@ -83,12 +83,7 @@
         return filesByName
     }
 
-    function currentLocation(){
-        return document.location.pathname.toString()
-    }
-
-    console.log(currentLocation())
-    console.log(getFilesByName("Salvanim", "SE111_202420", "index.html"))
+    console.log(getData("Salvanim", "SE111_202420", ""))
 
 </script>
 </html>
