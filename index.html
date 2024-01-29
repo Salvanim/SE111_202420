@@ -30,73 +30,65 @@
     </div>
 </body>
 <script>
+    function getData(username, repo, path){
+        const urlString = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+        const request = new XMLHttpRequest();
+        request.open("GET", urlString, false); // `false` makes the request synchronous
+        request.send(null);
+
+        if (request.status === 200) {
+            return JSON.parse(request.responseText);
+        }
+
+        return null;
+    }
+
+    function seperateDirectories(data){
+        const types = data.map(item => item.type);
+        const length = types.length
+        var directories = []
+        var files = []
+        for(var i = 0; i < length; i++){
+            if(types[i] == 'dir'){
+                directories.push(data[i])
+            } else {
+                files.push(data[i])
+            }
+        }
+        return {"dir": directories, "files": files};
+    }
+
+    function itterativeSearch(username, repo, startPath, files = []){
+        var dir = []
+        var seperated = seperateDirectories(getData(username, repo, startPath))
+        files.push(seperated['files'])
+        dir = seperated['dir']
+        for(dictionarys in dir){
+            var currentDictionary = dir[dictionarys]
+            var path = currentDictionary['path']
+            files = itterativeSearch(username, repo, path, files)
+        }
+        files = [].concat.apply([], files);
+        return files
+    }
+
+    function getFilesByName(username, repo, name){
+        originalSearch = itterativeSearch(username, repo, "")
+        filesByName = []
+        for(dict in originalSearch){
+            if(originalSearch[dict]["name"] == name){
+                filesByName.push(originalSearch[dict])
+            }
+        }
+        return filesByName
+    }
 
     function currentLocation(){
         return document.location.pathname.toString()
     }
 
-    function getSource(){
-        var locationArray = document.location.pathname.toString().toString().split("/")
-        locationArray.pop()
-        locationArray = locationArray.join("/")
-        return locationArray
-    }
-
-    function getSource(path){
-        var locationArray = path.split("/")
-        locationArray.pop()
-        locationArray = locationArray.join("/")
-        return locationArray
-    }
-
-    function travelBackPath(path, amount){
-        currentPath = path
-        max = path.split("/").length
-
-        if (amount > max){
-            amount = amount % max
-        }
-
-        for (var i = 0; i < amount; i++){
-            currentPath = getSource(currentPath)
-        }
-
-        return currentPath
-    }
-    
-    async function getData(username, repo, path){
-        try {
-            const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
-            const response = await fetch(apiUrl);
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            console.error('Error fetching repository paths:', error);
-            return [];
-        }
-    }
-
-    function seperateDirectories(data){
-        const types = data.map(item => item.type);
-
-        const dir= []
-        const file = []
-        var i = 0
-        for(type in types){
-            if(type = "dir"){
-                dir.push(data[i])
-            } else {
-                file.push(data[i])
-            }
-            i += 1
-        }
-
-        return {"dir" : dir, "file" : file}
-    }
-
-
-
-console.log(seperateDirectories(getData("Salvanim", "SE111_202420", "")))
+    console.log(currentLocation())
+    console.log(getFilesByName("Salvanim", "SE111_202420", "index.html"))
 
 </script>
 </html>
