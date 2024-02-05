@@ -92,7 +92,7 @@ function createHeading(text){
 function fillLinks(username, repo){
     var data = getData(username, repo, "")
     for(const dict in data) {
-        var name = data[dict]['name']
+        var name = data[dict]['name'].split('.')[0]
         if(name != 'README.md' && data[dict]['path'] != 'index.html'){
             createHeading(name)
 
@@ -100,7 +100,7 @@ function fillLinks(username, repo){
             var link = document.createTextNode(name)
             a.appendChild(link)
 
-            a.title = "This is link to" + name
+            a.title = "This is a link to " + name
 
             a.href = currentPath() + "/" + data[dict]['path']
 
