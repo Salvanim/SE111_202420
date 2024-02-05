@@ -36,46 +36,6 @@ function getData(username, repo, path){
     return null;
 }
 
-function seperateDirectories(data){
-    const types = data.map(item => item.type);
-    const length = types.length
-    var directories = []
-    var files = []
-    for(var i = 0; i < length; i++){
-        if(types[i] == 'dir'){
-            directories.push(data[i])
-        } else {
-            files.push(data[i])
-        }
-    }
-    return {"dir": directories, "files": files};
-}
-
-function itterativeSearch(username, repo, startPath, files = []){
-    var dir = []
-    var seperated = seperateDirectories(getData(username, repo, startPath))
-    files.push(seperated['files'])
-    dir = seperated['dir']
-    for(dictionarys in dir){
-        var currentDictionary = dir[dictionarys]
-        var path = currentDictionary['path']
-        files = itterativeSearch(username, repo, path, files)
-    }
-    files = [].concat.apply([], files);
-    return files
-}
-
-function getFilesByName(username, repo, name){
-    originalSearch = itterativeSearch(username, repo, "")
-    filesByName = []
-    for(dict in originalSearch){
-        if(originalSearch[dict]["name"] == name){
-            filesByName.push(originalSearch[dict])
-        }
-    }
-    return filesByName
-}
-
 function currentPath(){
     var loc = window.location.pathname;
     var dir = loc.substring(0, loc.lastIndexOf('/'));
