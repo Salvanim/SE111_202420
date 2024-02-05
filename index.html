@@ -32,12 +32,12 @@
     </div>
 </body>
 <script type="module">
-
+/*
 import { Octokit } from "octokit";
 
 const octokit = new Octokit({ 
     auth: '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',
-});
+});*/
 
 function getData(username, repo, path){
     const urlString = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
@@ -92,7 +92,39 @@ function getFilesByName(username, repo, name){
     return filesByName
 }
 
-console.log(getData("Salvanim", "SE111_202420", ""))
+function currentPath(){
+    var loc = window.location.pathname;
+    var dir = loc.substring(0, loc.lastIndexOf('/'));
+    return dir
+}
+
+function createHeading(text){
+    var h = document.createElement('H3')
+    var t = document.createTextNode(text);
+    h.appendChild(t)
+    document.body.appendChild(h);
+}
+
+function fillLinks(username, repo){
+    var data = getData(username, repo, "")
+    for(const dict in data) {
+        
+        var name = data[dict]['name']
+        createHeading(name)
+
+        var a = document.createElement('a') 
+        var link = document.createTextNode(name)
+        a.appendChild(link)
+
+        a.title = "This is link to" + name
+
+        a.href = currentPath() + "/" + data[dict]['path']
+
+        document.body.appendChild(a);
+    }
+}
+
+fillLinks("Salvanim", "SE111_202420")
 
 </script>
 </html>
