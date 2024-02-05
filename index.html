@@ -93,7 +93,7 @@ function fillLinks(username, repo){
     var data = getData(username, repo, "")
     for(const dict in data) {
         var name = data[dict]['name']
-        if(name != 'README.md'){
+        if(name != 'README.md' && data[dict]['path'] != 'index.html'){
             createHeading(name)
 
             var a = document.createElement('a') 
