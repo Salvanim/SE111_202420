@@ -16,13 +16,8 @@
     
 </body>
 <script type="module">
-/*
-import { Octokit } from "octokit";
 
-const octokit = new Octokit({ 
-    auth: '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',
-});*/
-
+//getData is a function that uses github api to get the content of a given github repo at a given path of a give user
 function getData(username, repo, path){
     const urlString = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
     const request = new XMLHttpRequest();
@@ -36,19 +31,22 @@ function getData(username, repo, path){
     return null;
 }
 
+//returns path location of this file
 function currentPath(){
     var loc = window.location.pathname;
     var dir = loc.substring(0, loc.lastIndexOf('/'));
     return dir
 }
 
-function createHeading(text){
-    var h = document.createElement('H3')
+//adds a heading object that contains given text of given size to body 
+function createHeading(text, size){
+    var h = document.createElement('H' + size)
     var t = document.createTextNode(text);
     h.appendChild(t)
     document.body.appendChild(h);
 }
 
+//Uses all preiouse methods to fill page with headings and links to different pages in given repo of given user
 function fillLinks(username, repo){
     var data = getData(username, repo, "")
     for(const dict in data) {
