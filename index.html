@@ -46,7 +46,7 @@ function createHeading(text, size){
     document.body.appendChild(h);
 }
 
-//Uses all preiouse methods to fill page with headings and links to different pages in given repo of given user
+//Uses all preiouse methods to fill page with headings and links to different index html pages in given repo of given user
 function fillLinks(username, repo){
     var data = getData(username, repo, "")
     for(const dict in data) {
