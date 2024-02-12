@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W6 | JS Demo #1</title>
+
+    <style>
+        /*everything in here is written in CSS*/
+        body {
+            background-color:grey;
+        }
+    </style>
+</head>
+<body>
+    <!--we should have some sort of HTML in the page before writing JS-->
+    <h1>Week 6 Intro Demo | Javascript</h1>
+    <a href="index.html">Demo #1</a> <a href="demo2.html">Demo #2</a>
+
+    <!--IN DOCUMENT JAVASCRIPT-->
+    <script>
+        //everything in here must be written in JS
+        //here is a single line comment in JS
+
+        //in JS, all variables must be declared - use the keyword 'var'
+
+        
+
+        
+        var name //this is declaration ONLY; 'name' does not have a value
+
+        name = "KT" //since name is declared, we can now assign value to it
+        
+        
+        //combination - declare and then assign on one line
+        var num1 = 10
+        var num2 = 7
+
+        //cannot use num1 and num2 until they have value assigned
+        var num3 = num1 + num2
+        console.log(num3)
+
+        //alert() creates a pop-up window in the browser page to display data
+        alert("Hello World!")//need to hit OK to get next line read
+        console.log("Hello World!")
+
+        //`` creates a LITERAL STRING --> works easier (but similar to) Python's .format()
+        //to display stored value with a message: `Message ${varName}`
+        alert(`The sum is: $${num3}`)
+
+        //INPUT -- prompt user for values to be used
+        //make sure to store the value for later use!
+        var lname = prompt(`Hi ${name}! \nEnter your Last name: `)
+
+        console.log(`Last Name: ${lname}`)//to developer
+        alert(`Your last name is: ${lname}`)//for user
+
+        //ALL DATA FROM PROMPT IS A STRING!
+        //we must convert to Number() if wanting to do math
+
+        var newNum = Number(prompt(`Enter a number to multiply by 7: `))
+
+        //convert to Number()
+        //newNum = Number(newNum)
+
+        console.log(newNum)
+
+        var multi = newNum * 7
+
+        console.log(`The multi value is: ${multi}`)//in console, for testing
+        alert(`${newNum} * 7 = $${multi.toFixed(2)}`)//seen in browser
+        
+
+    </script>
+</body>
+</html>
