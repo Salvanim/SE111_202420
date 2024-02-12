@@ -12,7 +12,7 @@
 </head>
 <body>
     <h1>Welcome to Dylan's Repo Index</h1>
-    <h2>A place fo all of my project links</h2>
+    <h2>A place for all of my project links</h2>
     
 </body>
 <script type="module">
@@ -60,12 +60,12 @@ function fillLinks(username, repo){
 
     //Itterates though data for dictionary indexs
     for(const dict in data) {
-        var name = data[dict]['name'].split('.')[0]
+        var name = data[dict].name.split('.')[0]
         
         //Removes README file and currrent file from propogation of page
-        if(name != 'README' && data[dict]['path'] != 'index.html'){
+        if(name != 'README' && data[dict].path != 'index.html'){
 
-            console.log(data[dict])
+            console.log(data[dict].type)
             //Creates heading for link to page
             createHeading(name, 3)
 
