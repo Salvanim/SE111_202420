@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Katie Truchon 202040">
+    <meta name="description" content="Week 6 JS Intro">
+    
+    <title>Week 6 | JS Intro</title>
+
+</head>
+<body>
+    
+    <!--we should have some sort of HTML in the file-->
+    <h1>Week 6 | JavaScript Pay Calculator</h1>
+
+    <!--IN-DOCUMENT JAVASCRIPT-->
+    <!--in-document: lives within the .html (you saw this with CSS)-->
+    <script>
+        //everything inside of the script tags MUST be written in JAVASCRIPT!
+        
+        var hourlyRate = Number(prompt("Enter your hourly rate: "))
+        var hoursWorked = Number(prompt("Enter amount of Hours you work every 2 weeks: "))
+        
+        var grossPay = (hourlyRate*hourlyRate)
+        alert(`Gross Pay: $${grossPay.toFixed(2)}`)
+        console.log(`Gross Pay: $${grossPay.toFixed(2)}`)
+
+        var taxAmount = grossPay * 0.20
+        alert(`Tax amount: $${taxAmount.toFixed(2)}`)
+        console.log(`Tax amount: $${taxAmount.toFixed(2)}`)
+
+        var netPay = grossPay - taxAmount
+        alert(`Net Pay: $${netPay.toFixed(2)}`)
+        console.log(`Net Pay: $${netPay.toFixed(2)}`)
+
+    </script>
+
+</body>
+</html>
