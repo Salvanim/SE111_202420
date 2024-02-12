@@ -65,6 +65,7 @@ function fillLinks(username, repo){
         //Removes README file and currrent file from propogation of page
         if(name != 'README' && data[dict]['path'] != 'index.html'){
 
+            console.log(data[dict])
             //Creates heading for link to page
             createHeading(name, 3)
 
