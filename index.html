@@ -19,8 +19,12 @@
 
 //getData is a function that uses github api to get the content of a given github repo at a given path of a give user
 function getData(username, repo, path){
+    //Defines url to api page
     const urlString = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+    //Defines base http request to access api page
     const request = new XMLHttpRequest();
+
+    //gets content of api page
     request.open("GET", urlString, false);
     request.send(null);
 
@@ -40,21 +44,31 @@ function currentPath(){
 
 //adds a heading object that contains given text of given size to body 
 function createHeading(text, size){
+    //Creates heading
     var h = document.createElement('H' + size)
     var t = document.createTextNode(text);
     h.appendChild(t)
+
+    //Propogates body with heading
     document.body.appendChild(h);
 }
 
 //Uses all preiouse methods to fill page with headings and links to different index html pages in given repo of given user
 function fillLinks(username, repo){
+    //Retrives data
     var data = getData(username, repo, "")
+
+    //Itterates though data for dictionary indexs
     for(const dict in data) {
         var name = data[dict]['name'].split('.')[0]
-        console.log(data[dict])
+        
+        //Removes README file and currrent file from propogation of page
         if(name != 'README' && data[dict]['path'] != 'index.html'){
+
+            //Creates heading for link to page
             createHeading(name, 3)
 
+            //Creates link to page
             var a = document.createElement('a') 
             var link = document.createTextNode(name)
             a.appendChild(link)
@@ -63,6 +77,7 @@ function fillLinks(username, repo){
 
             a.href = currentPath() + "/" + data[dict]['path']
 
+            //Propogates body with link
             document.body.appendChild(a);
         }
     }
