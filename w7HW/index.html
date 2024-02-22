@@ -132,8 +132,8 @@
             add an event listener to the #confirm-button that runs a function called "confirmForm"
         */
 
-        document.querySelector(`#enter-button`).addEventListener(`click`, formData)
-        document.querySelector(`#confirm-button`).addEventListener(`click`, confirmForm)
+        inputButtons[0].addEventListener(`click`, formData)
+        inputButtons[1].addEventListener(`click`, confirmForm)
 
         //PART3------building event functions----------------------
         /*
@@ -200,26 +200,8 @@
 
        function confirmForm(event)
        {    
-            //Gets content of form
-            var firstName = document.getElementById(`first`).value
-            var lastName = document.getElementById('last').value
-            var rate = Number(document.getElementById(`rate`).value)
-            var hours = Number(document.getElementById(`hours`).value)
-
-            //Defines and calculates fullName, grossPay, taxAmount, and netPay
-            var fullName = firstName + ` ` + lastName
-            var grossPay = rate * hours
-            var taxAmount = grossPay * 0.07
-            var netPay = grossPay - taxAmount
-            
-            //Creates alert with defined values
-            alert(
-                `\nFull Name: ${fullName}\n`
-                +`\nGross Pay: $${grossPay.toFixed(2)}\n`
-                +`\nTax Amount: $${taxAmount.toFixed(2)}\n`
-                +`\nNet Pay: $${netPay.toFixed(2)}\n`
-
-            )
+            //Gets text content of div and displays
+            alert(div.innerText)
        }//confirmForm()
 
 
