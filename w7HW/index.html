@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--FILL OUT THE MISSING INFO-->
+    <meta name="author" content="">
+    <meta name="description" content="">
+
+    <title>W7 | JS Pay Form</title>
+</head>
+<body>
+    <h1>W7 Javascript Pay Calculator Form</h1>
+
+    <!--FORM- Read through to get an idea of what your IDs are!-->
+    <form style="border:1px solid blue;">
+        <table>
+            <tr>
+                <!--left side: questions-->
+                <td>
+                    <label for="first" class="questions">FIRST: </label>
+                </td>
+
+                <!--right side: input values-->
+                <td>
+                    <input type="text" name="first" id="first">
+
+                </td>
+            </tr>
+
+            <tr>
+                <!--left side: questions-->
+                <td>
+                    <label for="last" class="questions">LAST: </label>
+                </td>
+
+                <!--right side: input values-->
+                <td>
+                    <input type="text" name="last" id="last">
+
+                </td>
+            </tr>
+
+            <tr>
+                <!--left side: questions-->
+                <td>
+                    <label for="rate" class="questions">Rate: $</label>
+                </td>
+
+                <!--right side: input values-->
+                <td>
+                    <input type="text" name="rate" id="rate">
+
+                </td>
+            </tr>
+
+            <tr>
+                <!--left side: questions-->
+                <td>
+                    <label for="hours" class="questions">Hours: </label>
+                </td>
+
+                <!--right side: input values-->
+                <td>
+                    <input type="text" name="hours" id="hours">
+
+                </td>
+            </tr>
+            <!--FORM SUBMIT BUTTON-->
+            <tr>
+                <!--left side: questions-->
+                
+                <td>
+                    <br>
+                    <br>
+                   <input type="button" id="enter-button" value="ENTER">
+                </td>
+
+                <!--right side: input values-->
+                <td>
+                    
+
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <!--these breaks are just for visual space-->
+    <br><br><br>
+
+    <h2>User's Information:</h2>
+    <!--BELOW IS WHERE YOUR USER'S INFO WILL GO!-->
+    <!--when you write your JS correctly, the form data will be written to the below space in your page-->
+    <div id="info" style="border:1px solid black; width:500px; height:200px;">
+    
+    </div><!--# info-->
+
+    <p><i>After reviewing the above, click CONFIRM to submit your data!</i></p>
+    <!--CONFIRMATION BUTTON- when this is clicked and your JS is correct, your user will see an alert() with their information-->
+    <input type="button" id="confirm-button" value="CONFIRM!">
+
+     <!--IN-DOCUMENT JAVASCRIPT BELOW-->
+     <script>
+        //write JS in here
+
+        //PART1-----selecting and storing HTML elements------------
+        /*
+            declare names for each of the following elements in the document: body, h1, input, div, input buttons
+
+            use EITHER .querySelector() OR .getElementById
+
+            console.log() all of these elements once complete
+
+        */
+
+        //Uses quearySelector to declare body, h1, input, div, and input buttons
+        var body = document.querySelector('body')
+        var h1 = document.querySelector('h1')
+        var div = document.querySelector('div')
+        //Gets nodeLists of all inputs and inputButtons
+        var input = document.querySelectorAll('input')
+        var inputButtons = document.querySelectorAll("input[type = 'button']")
+        
+        console.log(body, h1, div, input, inputButtons)
+
+        //PART2------adding event listeners------------------------
+        /*
+            add an event listener to the #enter-button that runs a function called "formData"
+
+            add an event listener to the #confirm-button that runs a function called "confirmForm"
+        */
+
+        document.querySelector(`#enter-button`).addEventListener(`click`, formData)
+        document.querySelector(`#confirm-button`).addEventListener(`click`, confirmForm)
+
+        //PART3------building event functions----------------------
+        /*
+            formData() instructions: 
+                -store the input element values to descriptive names
+                -declare and create a "fullName" using the first and last values
+                -declare and create: grossPay, taxAmount, netPay
+                -console.log() the 4 values: fullName, grossPay, taxAmount, netPay
+                -write the information, with bolded labels in paragraph elements, to the #info div's innerHTML
+                -ensure all monetary values are displayed to the second decimal place (.toFixed(2))
+
+                    HINT EX: `<p><b>Full Name:</b> ${fullName}`
+
+                REMEMBER: form text field data is treated as a STRING so you will most likely need the Number() 
+
+
+            confirmForm() instructions:
+                -store the input element values to descriptive names
+                -declare and create a "fullName" using the first and last values
+                -declare and create: grossPay, taxAmount, netPay
+                -display all information (fullName, grossPay, taxAmount, netPay) to the user using ONE alert()
+                -each value should be on its own line (use `\n`) and ensure all monetary values are displayed to the second decimal place (.toFixed(2))
+                
+
+        */
+       function formData(event)
+       {
+            //Resets div content for every submit
+            div.innerHTML = ''
+            //EXTRA CREDIT---------+5pts-------------------------------
+            /*
+                Once your file is working, add ONE INSTRUCTION above this comment, but inside of the formData(), that makes sure if the user resubmits the form without reloading the page, only the new form info is displayed
+            */
+
+            //Gets content of form
+            var firstName = document.getElementById(`first`).value
+            var lastName = document.getElementById('last').value
+            var rate = Number(document.getElementById(`rate`).value)
+            var hours = Number(document.getElementById(`hours`).value)
+
+            //Defines and calculates fullName, grossPay, taxAmount, and netPay
+            var fullName = firstName + ` ` + lastName
+            var grossPay = rate * hours
+            var taxAmount = grossPay * 0.07
+            var netPay = grossPay - taxAmount
+
+            //Logs defined values
+            console.log(
+                "Full Name: " + fullName, 
+                "Gross Pay: " + grossPay, 
+                "Tax Amount: " + taxAmount, 
+                "Net Pay: " + netPay
+            )
+
+            //Changes div html to contain values
+            div.innerHTML += `<p><b>Full Name: </b>${fullName}</p>`
+            div.innerHTML += `<p><b>Gross Pay: $</b>${grossPay.toFixed(2)}</p>`
+            div.innerHTML += `<p><b>Tax Amount: $</b>${taxAmount.toFixed(2)}</p>`
+            div.innerHTML += `<p><b>Net Pay: $</b>${netPay.toFixed(2)}</p>`
+
+
+       }//formData()
+
+
+       function confirmForm(event)
+       {    
+            //Gets content of form
+            var firstName = document.getElementById(`first`).value
+            var lastName = document.getElementById('last').value
+            var rate = Number(document.getElementById(`rate`).value)
+            var hours = Number(document.getElementById(`hours`).value)
+
+            //Defines and calculates fullName, grossPay, taxAmount, and netPay
+            var fullName = firstName + ` ` + lastName
+            var grossPay = rate * hours
+            var taxAmount = grossPay * 0.07
+            var netPay = grossPay - taxAmount
+            
+            //Creates alert with defined values
+            alert(
+                `\nFull Name: ${fullName}\n`
+                +`\nGross Pay: $${grossPay.toFixed(2)}\n`
+                +`\nTax Amount: $${taxAmount.toFixed(2)}\n`
+                +`\nNet Pay: $${netPay.toFixed(2)}\n`
+
+            )
+       }//confirmForm()
+
+
+    </script>
+    
+</body>
+</html>
