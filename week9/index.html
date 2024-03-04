@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Week 9</title>
+<style type="text/css">
+	.border{border:1px solid black;}
+</style>
+</head>
+
+<body>
+</body>
+
+<script type="text/javascript">
+	//Use this Array of objects to complete the assignment.
+	var people =[
+		{first:"Jason", last:"Vorhees", credit:"Friday the 13th"},
+		{first:"Freddy", last:"Krueger", credit:"A Nightmare on Elm Street" },
+		{first:"Roger", last:"Rabbit", credit:"Who Framed Roger Rabbit" },
+		{first:"Kevin", last:"McCallister", credit:"Home Alone" },
+		{first:"Godzilla", last:"King of The Monsters", credit:"Godzilla" },
+		{first:"Buzz", last:"Lightyear", credit:"Toy Story" },
+		{first:"Marion", last:"Cobretti", credit:"Cobra" }
+	]
+
+	var body = document.querySelector('body')
+
+	for(personIndex in people){
+		//Defies each value in people list as person object
+		var person = people[personIndex]
+
+		//Defines div element to contain person attribuetes
+		var tempDiv = document.createElement('div')
+		tempDiv.setAttribute('id', String(personIndex))
+		tempDiv.setAttribute('class', 'border')
+		console.log(tempDiv)
+
+		//Itterates though attributes of each person in people list
+		//Appends each attribute to tempDiv as paragraph
+		for(attribute in person){
+			var tempParagraph = document.createElement('p')
+			var tempText = document.createTextNode(person[attribute])
+			tempParagraph.appendChild(tempText)
+			tempDiv.appendChild(tempParagraph)
+		}
+		
+		body.appendChild(tempDiv)
+	}
+
+	
+
+</script>
+
+</html>
