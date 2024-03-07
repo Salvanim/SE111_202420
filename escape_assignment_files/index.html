@@ -54,7 +54,7 @@
             console.dir(start)
             /*change the `exit` cell's style.backgroundColor to `red` in one line of code without using it's id. 
             You must use the .parentElement and children lists of the `start` cell to do this*/
-            start.parentElement.parentElement.children[1].children[4].style.backgroundColor = "red"
+            document.querySelector("td[id='start']").parentElement.parentElement.children[1].children[4].style.backgroundColor = "red"
         </script>
     </main>
 </body>
